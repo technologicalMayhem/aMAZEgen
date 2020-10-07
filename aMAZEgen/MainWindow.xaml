@@ -10,19 +10,53 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="2"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2" />
         </Grid.ColumnDefinitions>
         <Button Grid.Row="1" Grid.Column="1" Content="Create Maze" Click="MakeMaze_OnClick" />
-        <TextBox Name="LastChance" Grid.Row="1" Grid.Column="2" Width="50" Text="10"/>
-        <TextBox Name="DecorChance" Grid.Row="1" Grid.Column="3" Width="50" Text="10"/>
-        <Image Name="Image" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Last Chance"/>
+            <TextBox Grid.Row="1" Grid.Column="0" Name="LastChance" Width="50" Text="10"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="Decor Chance"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="DecorChance" Width="50" Text="10"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Seed Chance"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Name="Seed" Width="200" Text=""/>
+            <Label Grid.Row="0" Grid.Column="3" Content="Debug"/>
+            <CheckBox Grid.Row="1" Grid.Column="3" Name="Debug" Click="Debug_OnClick"/>
+        </Grid>
+        <Button Grid.Row="2" Grid.Column="1" Content="Test Noise" Click="Test_OnClick"/>
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Slider Grid.Column="0" Name="Noise" Value="80" Minimum="0" Maximum="300" 
+                    IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <Label Grid.Column="1" Content="{Binding ElementName=Noise, Path=Value}" />
+        </Grid>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Seed: " />
+            <Label Name="FinalSeed"/>
+        </StackPanel>
+        <Image Name="Image" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
     </Grid>
 </Window>
